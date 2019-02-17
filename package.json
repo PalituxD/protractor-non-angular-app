@@ -1,0 +1,28 @@
+{
+  "name": "protractorbitbucket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "pretest": "npm run tsc",
+    "test": "npm run tsc && ./node_modules/.bin/protractor tmp/conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jasmine": "^3.3.9",
+    "@types/jasminewd2": "^2.0.6",
+    "@types/node": "^11.9.4",
+    "jasmine": "^3.3.1",
+    "typescript": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.3.9",
+    "@types/jasminewd2": "^2.0.6",
+    "protractor": "^5.4.2",
+    "ts-node": "^8.0.2",
+    "jasmine": "^3.3.1",
+    "typescript": "^3.3.3"
+  }
+}
