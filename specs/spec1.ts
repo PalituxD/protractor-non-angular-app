@@ -8,11 +8,10 @@ const SPEC_TEST="Bitbucket Login && find '..pom.xml' of <REPOSITORY>";
 
 describe(SPEC_DESCRIPTION, () => {
   const REPOSITORY = "multitenancy";
-  const FILE = "pom.xml";
+  const FILE = "..pom.xml";
   const LOGGER = factory.getLogger(`{${SPEC_DESCRIPTION}}-{${SPEC_TEST}}`);
   
   beforeEach(async () => {
-
     browser.waitForAngularEnabled(false);
     await BitBucket.goToApp(LoginService.getUrl());
   });

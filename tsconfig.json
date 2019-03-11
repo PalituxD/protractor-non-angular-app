@@ -6,7 +6,9 @@
       "inlineSourceMap": true,
       "declaration": false,
       "noImplicitAny": false,
-      "outDir": "tmp"
+      "outDir": "tmp",
+      "resolveJsonModule": true,
+      "esModuleInterop": true
     },
     "exclude": [
       "node_modules"

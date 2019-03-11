@@ -1,62 +1,59 @@
-import {browser, element, by, protractor} from 'protractor';
-
+import {browser} from 'protractor';
+import {Action, SelectorType} from '../shared/common/action';
 export class BitBucket{    
     constructor(){
     }
 
-    public goToApp():void{
-        browser.get('https://bitbucket.org/');
+    public static async goToApp(url){
+        await browser.get(url);
     }
 
-    public goToLogin():void{
+    public static async goToLogin(){
         let xpath = "//a[@class='imkt-navbar__link-list-link'][contains(text(),'Log in')]";
-        let login = element(by.xpath(xpath));
-        browser.wait(protractor.ExpectedConditions.elementToBeClickable(login)).then(()=>{
-            login.click();
-        });
+        await Action.set({
+            selector:xpath,
+            type:SelectorType.XPATH
+        }).doClick();
     }
 
-    public putUsername(username):void{
+    public static async putUsername(username){
         let xpath = "//input[@id='username']";
-        let input = element(by.xpath(xpath));
-        browser.wait(protractor.ExpectedConditions.visibilityOf(input)).then(()=>{
-            input.sendKeys(username);
-        });
+        await Action.set({
+            selector:xpath,
+            type:SelectorType.XPATH
+        }).putText(username);
     }
 
-    public putPassword(password):void{
+    public static async putPassword(password){
         let xpath = "//input[@placeholder='Enter password']";
-        let input = element(by.xpath(xpath));
-        browser.wait(protractor.ExpectedConditions.visibilityOf(input)).then(()=>{
-            input.sendKeys(password);
-        });
+        await Action.set({
+            selector:xpath,
+            type:SelectorType.XPATH
+        }).putText(password);
     }
 
-    public doClickOnLogin():void{
+    public static async doClickOnLogin(){
         let id = "login-submit";
-        let button = element(by.id(id));
-        browser.wait(protractor.ExpectedConditions.elementToBeClickable(button)).then(()=>{
-            button.click();
-        });
+        await Action.set({
+            selector:id,
+            type:SelectorType.ID
+        }).doClick();
     }
 
-    public doClickOnRepository(repository:String){
+    public static async doClickOnRepository(repository:String){
         let xpath = "//a[@title='"+repository+"'][contains(text(),'"+repository+"')]";
-        let link = element(by.xpath(xpath));
-        browser.wait(protractor.ExpectedConditions.elementToBeClickable(link)).then(()=>{
-            link.click();
-        });
+        await Action.set({
+            selector:xpath,
+            type:SelectorType.XPATH
+        }).doClick();
     }
 
-    public async getPomText() {
-        let pom = element(by.xpath("//a[contains(text(),'pom.xml')]"));
-        let content ="";
-        await browser.wait(protractor.ExpectedConditions.elementToBeClickable(pom)).then(()=>{
-            pom.getText().then((text)=> {
-                content = text;
-            });
-        });
-        return Promise.resolve(content);
+    public static async getPomText() {
+        let xpath = "//a[contains(text(),'pom.xml')]";
+        return Action.set({
+            selector:xpath,
+            type:SelectorType.XPATH
+        }).getText();
     }
 
 }
